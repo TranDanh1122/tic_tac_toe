@@ -554,6 +554,10 @@ video {
   display: none;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .fixed {
   position: fixed;
 }
@@ -600,16 +604,16 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
 }
 
 .block {
@@ -1038,7 +1042,7 @@ main[winner="p1"][winsym="o"] .winner_banner span,
 }
 
 .box[x]:hover i,
-    .box[o]:active i {
+    .box[x]:active i {
   mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
   -webkit-mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
 }

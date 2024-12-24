@@ -3,9 +3,9 @@ let startGame = document.querySelectorAll('.start_game')
 let main = document.querySelector('main')
 let boxs = document.querySelectorAll('.box')
 let turns = document.querySelectorAll('.turn')
-let next  = document.querySelector('.next')
-let quit  = document.querySelector('.quit')
-
+let next = document.querySelector('.next')
+let quit = document.querySelector('.quit')
+let reset = document.querySelector('.reset')
 let handleChoseMark = (e) => {
     marks.forEach(el => el.removeAttribute('picked'))
     let element = e.target
@@ -46,16 +46,15 @@ let handleWinner = () => {
 }
 let handleTick = (e) => {
     let el = e.target.classList.contains('box') ? e.target : e.target.closest('.box')
-    if (el.hasAttribute("x") || el.hasAttribute("y")) return false
+    if (el.hasAttribute("x") || el.hasAttribute('o')) {
+        return false
+    }
     let x = el.getAttribute('data-x')
     let y = el.getAttribute('data-y')
     let tick = window.coreGame.tick(x, y)
     el.toggleAttribute(`${tick}`, true)
-
     turns.forEach(el => {
         el.style.display = 'none';
-        console.log(tick, el.hasAttribute(`[${tick}]`), el);
-
         if (el.hasAttribute(`${tick}`)) el.style.display = 'inline-block'
     })
     handleWinner()
@@ -71,10 +70,16 @@ let handleNext = (e) => {
     main.toggleAttribute('winsym', false)
 }
 let handleQuit = (e) => {
-
+    window.coreGame.reset()
+    main.toggleAttribute('end', false)
+    main.toggleAttribute('winner', false)
+    main.toggleAttribute('winsym', false)
+    main.toggleAttribute('play', false)
+    main.toggleAttribute('new', true)
+    handleNext()
 }
 boxs.forEach(el => el.addEventListener('click', handleTick))
 startGame.forEach(el => el.addEventListener('click', handleStartGame))
 marks.forEach(el => el.addEventListener('click', handleChoseMark))
-next.addEventListener('click' , handleNext)
-quit.addEventListener('click' ,handleQuit)
+next.addEventListener('click', handleNext)
+quit.addEventListener('click', handleQuit)

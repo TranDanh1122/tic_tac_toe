@@ -26,6 +26,10 @@ window.coreGame = {
         ]
         coreGame.turn = 1
     },
+    reset: () => {
+        coreGame.p1.win = 0
+        coreGame.p2.win = 0
+    },
     setMark: (mark) => {
         coreGame.p1.mark = mark
         coreGame.p2.mark = mark == "x" ? "o" : "x"

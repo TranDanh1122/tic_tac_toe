@@ -118,7 +118,7 @@
     }
 
     .box[x]:hover i,
-    .box[o]:active i {
+    .box[x]:active i {
         mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
         -webkit-mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
     }
