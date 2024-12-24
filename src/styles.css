@@ -1,3 +1,125 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    main[new] *[new] {
+        display: block
+    }
+
+    main[play] *[play] {
+        display: block
+    }
+
+    main[play_type="multi"] *[multi] {
+        display: block
+    }
+
+    main[play_type="solo"] *[solo] {
+        display: block
+    }
+
+    main[end] *[end] {
+        display: block
+    }
+
+    *[p1],
+    *[p2] {
+        display: none !important
+    }
+
+    main[winner="p1"][play_type="multi"] *[p1][multi] {
+        display: block !important
+    }
+
+    main[winner="p2"][play_type="multi"] *[p2][multi] {
+        display: block !important
+    }
+
+    main[winner="p1"][play_type="solo"] *[p1][solo] {
+        display: block !important
+    }
+
+    main[winner="p2"][play_type="solo"] *[p2][solo] {
+        display: block !important
+    }
+
+    main[winner="tie"] *[tie] {
+        display: block;
+    }
+
+    main[winner="p1"] .winner_banner,
+    main[winner="p2"] .winner_banner {
+        display: flex
+    }
+
+    main[winner="p1"][winsym="x"] .winner_banner i,
+    main[winner="p2"][winsym="x"] .winner_banner i {
+        mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        background-color: #31C3BD;
+    }
+
+    main[winner="p1"][winsym="x"] .winner_banner span,
+    main[winner="p2"][winsym="x"] .winner_banner span {
+        color: #31C3BD;
+    }
+
+    main[winner="p1"][winsym="o"] .winner_banner i,
+    main[winner="p2"][winsym="o"] .winner_banner i {
+        mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        background-color: #F2B137;
+    }
+
+    main[winner="p1"][winsym="o"] .winner_banner span,
+    main[winner="p2"][winsym="o"] .winner_banner span {
+        color: #F2B137;
+    }
+
+    .x-mark i {
+        mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        background-color: #A8BFC9;
+    }
+
+    .o-mark i {
+        mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        background-color: #A8BFC9;
+    }
+
+    .o-mark[picked] i,
+    .x-mark[picked] i {
+        background-color: #1A2A33;
+    }
+
+    .x-mark[picked] .img_box,
+    .o-mark[picked] .img_box {
+        background-color: #A8BFC9;
+    }
+
+    .box[o] i {
+        mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+        background-color: #F2B137;
+    }
+
+    .box[o]:hover i,
+    .box[o]:active i {
+        mask: url(../starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
+    }
+
+    .box[x] i {
+        mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+        background-color: #31C3BD;
+    }
+
+    .box[x]:hover i,
+    .box[o]:active i {
+        mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
+        -webkit-mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
+    }
+}

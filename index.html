@@ -1,47 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Tic Tac Toe</title>
+  <style>
+    html,
+    body {
+      font-size: 100%;
+    }
+  </style>
 </head>
+<!-- game state : 
+ new
+ play 
+ play_type: solo, multi
+ end
+ winner: p1, p2 tie
+ winsym : x, o
+ -->
+
 <body>
+  <main play play_type="solo" end winner="p1" winsym="x"
+    class="w-full h-full min-h-[100vh] flex justify-center items-center bg-dark_navy">
+    <div new class=" hidden card w-full max-w-[28.75rem]">
+      <div class="card_header ">
+        <img src="./starter-code/assets/logo.svg" alt="logo" class="w-[4.5rem] h-8 object-cover mx-auto">
+      </div>
+      <div
+        class="card_body bg-semi_navy p-6 drop-shadow-dark_navy drop-shadow-lg shadow-lg shadow-dark_navy rounded-md mt-10">
+        <h2 class="text-sliver tracking-[1px] font-bold text-center">
+          Pick player 1's mark
+        </h2>
+        <div class="flex rounded-xl flex-nowrap bg-dark_navy my-5 ">
+          <div div class="x-mark w-1/2 p-2" picked>
+            <div class="img_box rounded-md w-full h-[3.5rem] flex justify-center items-center">
+              <i class="w-8 h-8 block"></i>
+            </div>
+          </div>
+          <div class="o-mark w-1/2 p-2">
+            <div class="img_box rounded-md w-full h-[3.5rem] flex justify-center items-center">
+              <i class="w-8 h-8 block "></i>
+            </div>
+          </div>
+        </div>
+        <span class="text-sliver tracking-[0.88px] uppercase text-center block"> Remember: X goes first</span>
+      </div>
+      <div class="card_footer flex flex-wrap gap-y-8 mt-8 ">
+        <div class="relative w-full">
+          <button
+            class="solo py-5 bg-light_yellow hover:bg-light_yellow_hover w-full rounded-xl cursor-pointer relative z-10 font-bold text-dark_navy tracking-[1.25px] text-[1.25rem] uppercase">
+            New Game (vs CPU)
+          </button>
+          <div class="absolute w-full h-full rounded-xl top-[.5rem] left-0 z-[1] bg-[#CC8B13]"></div>
+        </div>
+        <div class="relative w-full">
+          <button
+            class="multi py-5 bg-light_blue hover:bg-light_blue_hover w-full rounded-xl cursor-pointer relative z-10 font-bold text-dark_navy tracking-[1.25px] text-[1.25rem] uppercase">
+            New Game (vs player)
+          </button>
+          <div class="absolute w-full h-full rounded-xl top-[.5rem] left-0 z-[1] bg-[#118C87]"></div>
+        </div>
+      </div>
+    </div>
+    <div play class=" hidden card w-full max-w-[28.75rem]">
+      <div class="card_header flex flex-nowrap justify-between items-center">
+        <img src="./starter-code/assets/logo.svg" alt="logo" class="w-[4.5rem] h-8 object-cover">
+        <div class="flex flex-nowrap items-center justify-between gap-4 bg-semi_navy px-8 py-4 rounded-xl">
+          <i class="inline-block w-5 h-5 bg-sliver"
+            style="mask:url(./starter-code/assets/icon-o.svg) center / contain no-repeat; -webkit-mask: url(./starter-code/assets/icon-x.svg) center / contain no-repeat; "></i>
+          <span class="text-sliver tracking-[1px] font-bold uppercase"> turn</span>
+        </div>
+        <div class="bg-sliver p-4 rounded-xl cursor-pointer hover:bg-sliver_hover">
+          <i class="block w-5 h-5 bg-dark_navy"
+            style="mask:url(./starter-code/assets/icon-restart.svg) center / contain no-repeat; -webkit-mask: url(./starter-code/assets/icon-restart.svg) center / contain no-repeat;"></i>
+        </div>
+      </div>
+      <div class="card_body w-full flex flex-wrap gap-5 gap-y-5 justify-center items-center mt-8">
+        <div o
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center ">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div x
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black   cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+        <div
+          class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
+          <i class="block w-16 h-16"></i>
+        </div>
+      </div>
+      <div class="card_footer flex flex-nowrap gap-4 mt-8">
+        <div class="flex flex-col rounded-lg py-3 px-10 w-1/3 items-center justify-center bg-light_blue ">
+          <span solo class="hidden uppercase text-dark_navy tracking-[0.88px] text-[0.8125rem] x">X(you)</span>
+          <span multi class="uppercase hidden text-dark_navy tracking-[0.88px] text-[0.8125rem] p2">x(p1)</span>
+          <span class="uppercase text-dark_navy tracking-[0.88px] font-bold win_count_p2">0</span>
+        </div>
+        <div class="flex flex-col rounded-lg py-3 px-10 w-1/3 items-center justify-center bg-sliver">
+          <span class="uppercase text-dark_navy tracking-[0.88px] text-[0.8125rem] ">ties</span>
+          <span class="uppercase text-dark_navy tracking-[0.88px] font-bold ties">0</span>
+        </div>
+        <div class="flex flex-col rounded-lg py-3 px-10 w-1/3 items-center justify-center bg-light_yellow">
+          <span solo class=" hidden uppercase text-dark_navy tracking-[0.88px] text-[0.8125rem] o">o(cpu)</span>
+          <span multi class="hidden uppercase text-dark_navy tracking-[0.88px] text-[0.8125rem] p1">o(p2)</span>
+          <span class="uppercase text-dark_navy tracking-[0.88px] font-bold win_count_p1 ">0</span>
+        </div>
+      </div>
+    </div>
 
-  <!-- New game menu start -->
+    <div end class="overlay hidden fixed top-0 left-0 w-full h-full bg-dark_navy bg-opacity-50"></div>
+    <div end class="fixed top-1/2 left-0 py-10 bg-semi_navy w-full text-center">
+      <span solo p2 class="tracking-[1px] font-bold text-sliver uppercase ">oh no, you lost...</span>
+      <span solo p1 class="tracking-[1px] font-bold text-sliver uppercase ">you win!</span>
+      <span multi p1 class="tracking-[1px] font-bold text-sliver uppercase ">player 1 win</span>
+      <span multi p2 class="tracking-[1px] font-bold text-sliver uppercase ">player 2 win</span>
+      <div class="hidden  items-center justify-center gap-6 winner_banner">
+        <i class="block w-24 h-24"></i>
+        <span class="tracking-[2.5px] font-bold text-[2.5rem]">TAKES THE ROUND</span>
+      </div>
+      <div tie class="hidden mb-8">
+        <span class="font-bold text-[2.5rem] tracking-[2.5px] text-sliver">ROUND TIED</span>
+      </div>
+      <div class="flex flex-nowrap gap-4 items-center justify-center">
+        <button class="bg-sliver hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold">
+          QUIT
+        </button>
+        <button
+          class="bg-light_yellow hover:bg-light_yellow_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold">
+          NEXT ROUND
+        </button>
+      </div>
+    </div>
+  </main>
 
-  Pick player 1's mark
-  Remember: X goes first
 
-  New Game (vs CPU)
-  New Game (vs player)
 
-  <!-- New game menu end -->
 
-  <!-- Game board start -->
 
-  <!-- x/o icon --> turn
 
-  X (You) <!-- Your score -->
-  Ties <!-- Ties score -->
-  X (CPU) <!-- CPU score -->
-
-  Oh no, you lost
-  You won!
-  Player <!-- 1/2 --> wins!
-
-  <!-- x/o icon --> takes the round
-  Round tied
-  Restart game?
-
-  Quit
-  Next round
-  No, cancel
-  Yes, restart
-
-  <!-- Game board end -->
 
 </body>
+
 </html>
+
+
+<!-- New game menu end -->
+
+<!-- Game board start -->
+
+<!-- x/o icon --> turn
+
+X (You) <!-- Your score -->
+Ties <!-- Ties score -->
+X (CPU) <!-- CPU score -->
+
+Oh no, you lost
+You won!
+Player <!-- 1/2 --> wins!
+
+<!-- x/o icon --> takes the round
+Round tied
+Restart game?
+
+Quit
+Next round
+No, cancel
+Yes, restart
+
+<!-- Game board end -->
