@@ -18,6 +18,14 @@ window.coreGame = {
         ['', '', ''],
         ['', '', '']
     ],
+    next: () => {
+        coreGame.roundData = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ]
+        coreGame.turn = 1
+    },
     setMark: (mark) => {
         coreGame.p1.mark = mark
         coreGame.p2.mark = mark == "x" ? "o" : "x"

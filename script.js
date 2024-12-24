@@ -3,6 +3,9 @@ let startGame = document.querySelectorAll('.start_game')
 let main = document.querySelector('main')
 let boxs = document.querySelectorAll('.box')
 let turns = document.querySelectorAll('.turn')
+let next  = document.querySelector('.next')
+let quit  = document.querySelector('.quit')
+
 let handleChoseMark = (e) => {
     marks.forEach(el => el.removeAttribute('picked'))
     let element = e.target
@@ -22,6 +25,7 @@ let handleStartGame = (e) => {
     main.setAttribute('play_type', type == "cpu" ? "solo" : 'multi')
 }
 let handleTie = () => {
+    main.toggleAttribute('end', true)
     main.setAttribute('winner', 'tie')
     main.toggleAttribute('winsym', false)
     document.querySelector(`.count_ties`).textContent = window.coreGame.tie
@@ -30,7 +34,7 @@ let handleTie = () => {
 let handleWinner = () => {
     let winnerMark = window.coreGame.checkWinner()
     if (!winnerMark) {
-        if (window.coreGame.checkTie()) handleTie()
+        if (window.coreGame.checkTie()) return handleTie()
         return null
     }
     let winner = window.coreGame.p1.mark == winnerMark ? "p1" : 'p2'
@@ -56,6 +60,21 @@ let handleTick = (e) => {
     })
     handleWinner()
 }
+let handleNext = (e) => {
+    boxs.forEach(el => {
+        el.removeAttribute("x")
+        el.removeAttribute("o")
+    })
+    window.coreGame.next()
+    main.toggleAttribute('end', false)
+    main.toggleAttribute('winner', false)
+    main.toggleAttribute('winsym', false)
+}
+let handleQuit = (e) => {
+
+}
 boxs.forEach(el => el.addEventListener('click', handleTick))
 startGame.forEach(el => el.addEventListener('click', handleStartGame))
 marks.forEach(el => el.addEventListener('click', handleChoseMark))
+next.addEventListener('click' , handleNext)
+quit.addEventListener('click' ,handleQuit)
