@@ -12,6 +12,9 @@ module.exports = {
         "light_blue_hover": "#65E9E4",
         "light_yellow": "#F2B137",
         "light_yellow_hover": "#FFC860"
+      },
+      screens: {
+        "mb": { min: "0", max: "767px" }
       }
     },
   },

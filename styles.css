@@ -1069,3 +1069,13 @@ main[winner="p1"][winsym="o"] .winner_banner span,
   --tw-bg-opacity: 1;
   background-color: rgb(219 232 237 / var(--tw-bg-opacity, 1));
 }
+
+@media (min-width: 0) and (max-width: 767px) {
+  .mb\:max-w-none {
+    max-width: none;
+  }
+
+  .mb\:max-w-\[90\%\] {
+    max-width: 90%;
+  }
+}

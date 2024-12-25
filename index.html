@@ -8,10 +8,19 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
   <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <style>
     html,
     body {
       font-size: 100%;
+    }
+    @media (max-width:767px) {
+      html,
+    body {
+      font-size: 75%;
+    }
     }
   </style>
 </head>
@@ -25,8 +34,8 @@
  -->
 
 <body>
-  <main new class="w-full h-full min-h-[100vh] flex justify-center items-center bg-dark_navy">
-    <div new class=" hidden card w-full max-w-[28.75rem]">
+  <main new class="w-full  h-full min-h-[100vh] flex justify-center items-center bg-dark_navy">
+    <div new class=" hidden card w-full max-w-[28.75rem]  mb:max-w-[90%]">
       <div class="card_header ">
         <img src="./starter-code/assets/logo.svg" alt="logo" class="w-[4.5rem] h-8 object-cover mx-auto">
       </div>
@@ -66,7 +75,7 @@
         </div>
       </div>
     </div>
-    <div play class=" hidden card w-full max-w-[28.75rem]">
+    <div play class=" hidden card w-full max-w-[28.75rem] mb:max-w-[90%]  mb:max-w-[90%]">
       <div class="card_header flex flex-nowrap justify-between items-center">
         <img src="./starter-code/assets/logo.svg" alt="logo" class="w-[4.5rem] h-8 object-cover">
         <div class="flex flex-nowrap items-center justify-between gap-4 bg-semi_navy px-8 py-4 rounded-xl">
@@ -153,15 +162,17 @@
       <div res class="hidden mb-8">
         <span class="font-bold text-[2.5rem] tracking-[2.5px] text-sliver">RESTART GAME?</span>
       </div>
-      <div  class="flex flex-nowrap gap-4 items-center justify-center">
-        <button action class="bg-sliver hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold quit uppercase">
+      <div class="flex flex-nowrap gap-4 items-center justify-center">
+        <button action
+          class="bg-sliver hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold quit uppercase">
           QUIT
         </button>
         <button action
           class="bg-light_yellow hover:bg-light_yellow_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold next uppercase">
           NEXT ROUND
         </button>
-        <button res class="bg-sliver hidden hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold uppercase no">
+        <button res
+          class="bg-sliver hidden hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold uppercase no">
           No, Cancel
         </button>
         <button res

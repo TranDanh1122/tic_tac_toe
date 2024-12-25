@@ -12,19 +12,29 @@ let handleChoseMark = (e) => {
     let element = e.target
     if (!element.classList.contains('.mark')) element = element.closest('.mark')
     element.toggleAttribute('picked', true)
-    if (e.target.classList.contains('o-mark')) {
+    if (element.classList.contains('o-mark')) {
         window.coreGame.setMark("o")
-        return true
+        return false
     }
     window.coreGame.setMark("x")
 }
+let cpuTick = () => {
+    let { cpuX, cpuY } = coreGame.cpuTick()
+    let cpuTickBox = document.querySelector('.boxs').querySelector(`[data-x="${cpuX}"][data-y="${cpuY}"]`)
+    let cpuMark = window.coreGame.p2.mark
+    cpuTickBox?.toggleAttribute(`${cpuMark}`, true)
+    return cpuMark
+}
 let handleStartGame = (e) => {
-    let type = e.target.classList.contains('multi') ? 'player' : 'cpu';        
+    let type = e.target.classList.contains('multi') ? 'player' : 'cpu';
     window.coreGame.setType(type);
     main.toggleAttribute('play', true)
     main.toggleAttribute('new', false)
     main.setAttribute('play_type', type == "cpu" ? "solo" : 'multi')
+    if (type == 'cpu' && window.coreGame.p1.mark == "o") cpuTick()
+
 }
+
 let handleTie = () => {
     main.toggleAttribute('end', true)
     main.setAttribute('winner', 'tie')
@@ -51,6 +61,7 @@ let rollTurn = (tick) => {
         if (!el.hasAttribute(`${tick}`)) el.style.display = 'inline-block'
     })
 }
+
 let handleTick = (e) => {
     let el = e.target.classList.contains('box') ? e.target : e.target.closest('.box')
     if (el.hasAttribute("x") || el.hasAttribute('o')) {
@@ -61,13 +72,16 @@ let handleTick = (e) => {
     let tick = window.coreGame.tick(x, y)
     el.toggleAttribute(`${tick}`, true)
     rollTurn(tick)
-    if (!window.coreGame.turn && window.coreGame.p2.type == "cpu") {
-        let { cpuX, cpuY } = coreGame.cpuTick()        
-        let cpuTickBox = document.querySelector('.boxs').querySelector(`[data-x="${cpuX}"][data-y="${cpuY}"]`)
-        let cpuMark = window.coreGame.p2.mark
-        cpuTickBox?.toggleAttribute(`${cpuMark}`, true)
-        rollTurn(cpuMark)
+    if (window.coreGame.p2.type === "cpu") {
+        if (
+            (window.coreGame.p2.mark === 'x' && window.coreGame.turn) ||
+            (window.coreGame.p2.mark === 'o' && !window.coreGame.turn)
+        ) {
+           let  cpuMark = cpuTick();
+            rollTurn(cpuMark);
+        }
     }
+
     handleWinner()
 }
 let handleNext = (e) => {
@@ -79,6 +93,8 @@ let handleNext = (e) => {
     main.toggleAttribute('end', false)
     main.toggleAttribute('winner', false)
     main.toggleAttribute('winsym', false)
+    if (window.coreGame.p2.type == 'cpu' && window.coreGame.p1.mark == "o") cpuTick()
+
 }
 let handleQuit = (e) => {
     window.coreGame.reset()
@@ -90,13 +106,14 @@ let handleQuit = (e) => {
     handleNext()
 }
 let toggleRestart = (e) => {
-    if(e.target.classList.contains('yes')) {
+    main.toggleAttribute('end', false)
+    main.toggleAttribute('restart', false)
+    if (e.target.classList.contains('yes')) {
         handleNext()
         return false
     }
-    main.toggleAttribute('end', false)
-    main.toggleAttribute('restart', false)
-} 
+
+}
 let handleRestart = () => {
     main.toggleAttribute('end', true)
     main.toggleAttribute('restart', true)
@@ -107,4 +124,4 @@ marks.forEach(el => el.addEventListener('click', handleChoseMark))
 next.addEventListener('click', handleNext)
 quit.addEventListener('click', handleQuit)
 restart.addEventListener('click', handleRestart)
-confirmRestart.forEach(el => el.addEventListener('click' , toggleRestart))
+confirmRestart.forEach(el => el.addEventListener('click', toggleRestart))
