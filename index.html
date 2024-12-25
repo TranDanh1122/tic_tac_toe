@@ -76,45 +76,45 @@
             style="mask:url(./starter-code/assets/icon-o.svg) center / contain no-repeat; -webkit-mask: url(./starter-code/assets/icon-o.svg) center / contain no-repeat; "></i>
           <span class="text-sliver tracking-[1px] font-bold uppercase"> turn</span>
         </div>
-        <div class="bg-sliver p-4 rounded-xl cursor-pointer hover:bg-sliver_hover reset">
+        <div class="bg-sliver p-4 rounded-xl cursor-pointer hover:bg-sliver_hover restart">
           <i class="block w-5 h-5 bg-dark_navy pointer-events-none"
             style="mask:url(./starter-code/assets/icon-restart.svg) center / contain no-repeat; -webkit-mask: url(./starter-code/assets/icon-restart.svg) center / contain no-repeat;"></i>
         </div>
       </div>
-      <div class="card_body w-full flex flex-wrap gap-5 gap-y-5 justify-center items-center mt-8">
-        <div data-y="0" data-x="0"
+      <div class="card_body w-full flex flex-wrap gap-5 gap-y-5 justify-center items-center mt-8 boxs">
+        <div data-x="0" data-y="0"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="0" data-x="1"
+        <div data-x="0" data-y="1"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="0" data-x="2"
+        <div data-x="0" data-y="2"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="1" data-x="0"
+        <div data-x="1" data-y="0"
           class="box shadow-md shadow-black   cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="1" data-x="1"
+        <div data-x="1" data-y="1"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="1" data-x="2"
+        <div data-x="1" data-y="2"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="2" data-x="0"
+        <div data-x="2" data-y="0"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="2" data-x="1"
+        <div data-x="2" data-y="1"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
-        <div data-y="2" data-x="2"
+        <div data-x="2" data-y="2"
           class="box shadow-md shadow-black  cursor-pointer h-[8.75rem] bg-semi_navy w-[calc(33.33%-.8333rem)] rounded-xl flex items-center justify-center">
           <i class="block w-16 h-16"></i>
         </div>
@@ -150,13 +150,23 @@
       <div tie class="hidden mb-8">
         <span class="font-bold text-[2.5rem] tracking-[2.5px] text-sliver">ROUND TIED</span>
       </div>
-      <div class="flex flex-nowrap gap-4 items-center justify-center">
-        <button class="bg-sliver hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold quit">
+      <div res class="hidden mb-8">
+        <span class="font-bold text-[2.5rem] tracking-[2.5px] text-sliver">RESTART GAME?</span>
+      </div>
+      <div  class="flex flex-nowrap gap-4 items-center justify-center">
+        <button action class="bg-sliver hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold quit uppercase">
           QUIT
         </button>
-        <button
-          class="bg-light_yellow hover:bg-light_yellow_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold next">
+        <button action
+          class="bg-light_yellow hover:bg-light_yellow_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold next uppercase">
           NEXT ROUND
+        </button>
+        <button res class="bg-sliver hidden hover:bg-sliver_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold uppercase no">
+          No, Cancel
+        </button>
+        <button res
+          class="hidden bg-light_yellow hover:bg-light_yellow_hover text-dark_navy tracking-[1px] p-4 rounded-lg font-bold uppercase yes">
+          Yes, restart
         </button>
       </div>
     </div>

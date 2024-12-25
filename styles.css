@@ -947,6 +947,14 @@ main[end] *[end] {
   display: block
 }
 
+main[end][restart] *[action] {
+  display: none
+}
+
+main[end][restart] *[res] {
+  display: block
+}
+
 *[p1],
     *[p2] {
   display: none !important

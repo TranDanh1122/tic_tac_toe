@@ -5,7 +5,8 @@ let boxs = document.querySelectorAll('.box')
 let turns = document.querySelectorAll('.turn')
 let next = document.querySelector('.next')
 let quit = document.querySelector('.quit')
-let reset = document.querySelector('.reset')
+let restart = document.querySelector('.restart')
+let confirmRestart = document.querySelectorAll('button[res]')
 let handleChoseMark = (e) => {
     marks.forEach(el => el.removeAttribute('picked'))
     let element = e.target
@@ -18,8 +19,8 @@ let handleChoseMark = (e) => {
     window.coreGame.setMark("x")
 }
 let handleStartGame = (e) => {
-    let type = e.target.classList.contains('multi') ? 'player' : 'cpu';
-    window.coreGame.setType = type;
+    let type = e.target.classList.contains('multi') ? 'player' : 'cpu';        
+    window.coreGame.setType(type);
     main.toggleAttribute('play', true)
     main.toggleAttribute('new', false)
     main.setAttribute('play_type', type == "cpu" ? "solo" : 'multi')
@@ -44,6 +45,12 @@ let handleWinner = () => {
     document.querySelector(`.win_count_${winner}`).textContent = window.coreGame[`${winner}`].win
 
 }
+let rollTurn = (tick) => {
+    turns.forEach(el => {
+        el.style.display = 'none';
+        if (!el.hasAttribute(`${tick}`)) el.style.display = 'inline-block'
+    })
+}
 let handleTick = (e) => {
     let el = e.target.classList.contains('box') ? e.target : e.target.closest('.box')
     if (el.hasAttribute("x") || el.hasAttribute('o')) {
@@ -53,10 +60,14 @@ let handleTick = (e) => {
     let y = el.getAttribute('data-y')
     let tick = window.coreGame.tick(x, y)
     el.toggleAttribute(`${tick}`, true)
-    turns.forEach(el => {
-        el.style.display = 'none';
-        if (el.hasAttribute(`${tick}`)) el.style.display = 'inline-block'
-    })
+    rollTurn(tick)
+    if (!window.coreGame.turn && window.coreGame.p2.type == "cpu") {
+        let { cpuX, cpuY } = coreGame.cpuTick()        
+        let cpuTickBox = document.querySelector('.boxs').querySelector(`[data-x="${cpuX}"][data-y="${cpuY}"]`)
+        let cpuMark = window.coreGame.p2.mark
+        cpuTickBox?.toggleAttribute(`${cpuMark}`, true)
+        rollTurn(cpuMark)
+    }
     handleWinner()
 }
 let handleNext = (e) => {
@@ -78,8 +89,22 @@ let handleQuit = (e) => {
     main.toggleAttribute('new', true)
     handleNext()
 }
+let toggleRestart = (e) => {
+    if(e.target.classList.contains('yes')) {
+        handleNext()
+        return false
+    }
+    main.toggleAttribute('end', false)
+    main.toggleAttribute('restart', false)
+} 
+let handleRestart = () => {
+    main.toggleAttribute('end', true)
+    main.toggleAttribute('restart', true)
+}
 boxs.forEach(el => el.addEventListener('click', handleTick))
 startGame.forEach(el => el.addEventListener('click', handleStartGame))
 marks.forEach(el => el.addEventListener('click', handleChoseMark))
 next.addEventListener('click', handleNext)
 quit.addEventListener('click', handleQuit)
+restart.addEventListener('click', handleRestart)
+confirmRestart.forEach(el => el.addEventListener('click' , toggleRestart))

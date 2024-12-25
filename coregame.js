@@ -30,6 +30,7 @@ window.coreGame = {
         coreGame.p1.win = 0
         coreGame.p2.win = 0
     },
+
     setMark: (mark) => {
         coreGame.p1.mark = mark
         coreGame.p2.mark = mark == "x" ? "o" : "x"
@@ -46,6 +47,24 @@ window.coreGame = {
         coreGame.turn = !coreGame.turn
         return mark
     },
+    cpuTick: () => { //this  function copy from chatgpt (sorry im so bad at algo) and have some update, return x,y of cpu choosen box, or false if no box available
+        const emptyCells = [];
+        for (let i = 0; i < coreGame.roundData.length; i++) {
+            for (let j = 0; j < coreGame.roundData[i].length; j++) {
+                if (coreGame.roundData[i][j] === '') { // null đại diện cho ô trống
+                    emptyCells.push({ row: i, col: j });
+                }
+            }
+        }
+        if (emptyCells.length === 0) {
+            return false;
+        }
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const cpuMove = emptyCells[randomIndex];
+        coreGame.roundData[cpuMove.row][cpuMove.col] = coreGame.p2.mark;
+        coreGame.turn = !coreGame.turn
+        return { cpuX: cpuMove.row, cpuY: cpuMove.col }
+    },
     checkTie: () => {
         let tie = coreGame.roundData.every(row => row.every(cell => cell !== ''));
         if (tie) coreGame.tie = coreGame.tie + 1
@@ -53,6 +72,7 @@ window.coreGame = {
     },
     checkWinner: () => { //this function copy from chatgpt (sorry im so bad at algo) and have some update, return x or o if someone win, null if noone win
         const size = coreGame.roundData.length;
+        
         let winnerMark = null
         for (let row = 0; row < size; row++) {
             if (coreGame.roundData[row][0] !== '' && coreGame.roundData[row][0] === coreGame.roundData[row][1] && coreGame.roundData[row][1] === coreGame.roundData[row][2]) {
