@@ -31,7 +31,7 @@ let handleStartGame = (e) => {
     main.toggleAttribute('play', true)
     main.toggleAttribute('new', false)
     main.setAttribute('play_type', type == "cpu" ? "solo" : 'multi')
-    if (type == 'cpu' && window.coreGame.p1.mark == "o") cpuTick()
+    if (type == 'cpu' && window.coreGame.p1.mark == "o") cpuTick
 
 }
 
@@ -77,7 +77,7 @@ let handleTick = (e) => {
             (window.coreGame.p2.mark === 'x' && window.coreGame.turn) ||
             (window.coreGame.p2.mark === 'o' && !window.coreGame.turn)
         ) {
-           let  cpuMark = cpuTick();
+            let cpuMark = cpuTick();
             rollTurn(cpuMark);
         }
     }
@@ -125,3 +125,21 @@ next.addEventListener('click', handleNext)
 quit.addEventListener('click', handleQuit)
 restart.addEventListener('click', handleRestart)
 confirmRestart.forEach(el => el.addEventListener('click', toggleRestart))
+
+function syncData () {
+    if (!coreGame.syncData()) return false;
+    main.toggleAttribute('play', true)
+    main.toggleAttribute('new', false)
+    main.setAttribute('play_type', coreGame.p2.type == "cpu" ? "solo" : 'multi')
+    if (window.coreGame.p2.type == 'cpu' && window.coreGame.p1.mark == "o" && window.coreGame.turn == 1) cpuTick()
+    window.coreGame.roundData.forEach((items, index) => {
+        items.forEach((item , idx) => {
+            if(item == '') return false
+            let tickBox = document.querySelector('.boxs').querySelector(`[data-x="${index}"][data-y="${idx}"]`)
+            tickBox?.toggleAttribute(`${item}`, true)
+        })
+    })
+    handleWinner()
+
+}
+syncData ()

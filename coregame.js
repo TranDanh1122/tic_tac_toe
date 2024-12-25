@@ -18,6 +18,35 @@ window.coreGame = {
         ['', '', ''],
         ['', '', '']
     ],
+    saveData: () => {
+        let data = {
+            p1: coreGame.p1,
+            p2: coreGame.p2,
+            tie: coreGame.tie,
+            turn: coreGame.turn,
+            roundData: coreGame.roundData,
+        }
+        window.storage.save('game', data)
+    },
+    removeData: () => {
+        window.storage.remove('game')
+    },
+    getData: () => {
+        return window.storage.get('game')
+    },
+    syncData: () => {
+        let data = coreGame.getData()
+        console.log(data.roundData);
+        
+        if (!data) return false        
+        if (data?.roundData.every(row => row.every(cell => cell == ''))) return false
+        coreGame.p1 = data.p1
+        coreGame.p2 = data.p2
+        coreGame.tie = data.tie
+        coreGame.turn = data.turn
+        coreGame.roundData = data.roundData
+        return true
+    },
     next: () => {
         coreGame.roundData = [
             ['', '', ''],
@@ -25,26 +54,32 @@ window.coreGame = {
             ['', '', '']
         ]
         coreGame.turn = 1
+        coreGame.saveData()
     },
     reset: () => {
         coreGame.p1.win = 0
         coreGame.p2.win = 0
+        coreGame.removeData()
     },
 
     setMark: (mark) => {
         coreGame.p1.mark = mark
         coreGame.p2.mark = mark == "x" ? "o" : "x"
+        coreGame.saveData()
     },
     setType: (type) => {
         coreGame.p2.type = type
+        coreGame.saveData()
     },
     getUserWithMark: (mark) => {
         return coreGame.p1.mark == mark ? coreGame.p1 : coreGame.p2
+
     },
     tick: (x, y) => {
         let mark = coreGame.turn ? "x" : "o"
         coreGame.roundData[x][y] = mark
         coreGame.turn = !coreGame.turn
+        coreGame.saveData()
         return mark
     },
     cpuTick: () => { //this  function copy from chatgpt (sorry im so bad at algo) and have some update, return x,y of cpu choosen box, or false if no box available
@@ -63,21 +98,24 @@ window.coreGame = {
         const cpuMove = emptyCells[randomIndex];
         coreGame.roundData[cpuMove.row][cpuMove.col] = coreGame.p2.mark;
         coreGame.turn = !coreGame.turn
+        coreGame.saveData()
         return { cpuX: cpuMove.row, cpuY: cpuMove.col }
     },
     checkTie: () => {
         let tie = coreGame.roundData.every(row => row.every(cell => cell !== ''));
         if (tie) coreGame.tie = coreGame.tie + 1
+        coreGame.saveData()
         return tie
     },
     checkWinner: () => { //this function copy from chatgpt (sorry im so bad at algo) and have some update, return x or o if someone win, null if noone win
         const size = coreGame.roundData.length;
-        
+
         let winnerMark = null
         for (let row = 0; row < size; row++) {
             if (coreGame.roundData[row][0] !== '' && coreGame.roundData[row][0] === coreGame.roundData[row][1] && coreGame.roundData[row][1] === coreGame.roundData[row][2]) {
                 winnerMark = coreGame.roundData[row][0];
                 coreGame.getUserWithMark(winnerMark).win++
+                coreGame.saveData()
                 return winnerMark
             }
         }
@@ -86,6 +124,7 @@ window.coreGame = {
             if (coreGame.roundData[0][col] !== '' && coreGame.roundData[0][col] === coreGame.roundData[1][col] && coreGame.roundData[1][col] === coreGame.roundData[2][col]) {
                 winnerMark = coreGame.roundData[0][col];
                 coreGame.getUserWithMark(winnerMark).win++
+                coreGame.saveData()
                 return winnerMark
             }
         }
@@ -93,12 +132,14 @@ window.coreGame = {
         if (coreGame.roundData[0][0] !== '' && coreGame.roundData[0][0] === coreGame.roundData[1][1] && coreGame.roundData[1][1] === coreGame.roundData[2][2]) {
             winnerMark = coreGame.roundData[0][0];
             coreGame.getUserWithMark(winnerMark).win++
+            coreGame.saveData()
             return winnerMark
         }
 
         if (coreGame.roundData[0][2] !== '' && coreGame.roundData[0][2] === coreGame.roundData[1][1] && coreGame.roundData[1][1] === coreGame.roundData[2][0]) {
             winnerMark = coreGame.roundData[0][2];
             coreGame.getUserWithMark(winnerMark).win++
+            coreGame.saveData()
             return winnerMark
         }
         return winnerMark;
