@@ -35,9 +35,7 @@ window.coreGame = {
         return window.storage.get('game')
     },
     syncData: () => {
-        let data = coreGame.getData()
-        console.log(data.roundData);
-        
+        let data = coreGame.getData()        
         if (!data) return false        
         if (data?.roundData.every(row => row.every(cell => cell == ''))) return false
         coreGame.p1 = data.p1

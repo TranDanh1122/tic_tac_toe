@@ -987,8 +987,8 @@ main[winner="p1"] .winner_banner,
 
 main[winner="p1"][winsym="x"] .winner_banner i,
     main[winner="p2"][winsym="x"] .winner_banner i {
-  mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
   background-color: #31C3BD;
 }
 
@@ -999,8 +999,8 @@ main[winner="p1"][winsym="x"] .winner_banner span,
 
 main[winner="p1"][winsym="o"] .winner_banner i,
     main[winner="p2"][winsym="o"] .winner_banner i {
-  mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
   background-color: #F2B137;
 }
 
@@ -1010,14 +1010,14 @@ main[winner="p1"][winsym="o"] .winner_banner span,
 }
 
 .x-mark i {
-  mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
   background-color: #A8BFC9;
 }
 
 .o-mark i {
-  mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
   background-color: #A8BFC9;
 }
 
@@ -1032,27 +1032,27 @@ main[winner="p1"][winsym="o"] .winner_banner span,
 }
 
 .box[o] i {
-  mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-o.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-o.svg) center / contain no-repeat;
   background-color: #F2B137;
 }
 
 .box[o]:hover i,
     .box[o]:active i {
-  mask: url(../starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-o-outline.svg) center / contain no-repeat;
 }
 
 .box[x] i {
-  mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-x.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-x.svg) center / contain no-repeat;
   background-color: #31C3BD;
 }
 
 .box[x]:hover i,
     .box[x]:active i {
-  mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
-  -webkit-mask: url(../starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
+  mask: url(starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
+  -webkit-mask: url(starter-code/assets/icon-x-outline.svg) center / contain no-repeat;
 }
 
 .hover\:bg-light_blue_hover:hover {
